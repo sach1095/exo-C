@@ -7,76 +7,86 @@
 
 int main(int argc, char const *argv[]) {
 
-int x = 0;
 char LettreEntre = 0;
-char MotsMystere[6] = "XXXXXX";
-char MotsSecret[6] = "MARRON";
+char MotsSecret[] = "MARRON";
+int lettreTrouver[6] = {0};
 int i = 0;
 int coupsRestants = 10;
-int tailleMot = 0;
 
-tailleMot = strlen(MotsSecret);
 
 printf("Bienvenue dans le jeux du Pendu.\n\n");
 printf("Dans ce jeux il vous faudra trouver le MotsMystere pour cela vous avez le droit a 10 erreur !\n\nBonne chance \n");
 
-  do {
-    printf("Le mots Mystere est : %s \n", MotsMystere);
-    printf("Entrez une lettre.\n");
-    LettreEntre = lireCaractere();
-    recherche(LettreEntre, MotsMystere, MotsSecret, coupsRestants);
-    printf("Le mots Mystere est : %s \n", *MotsMystere);
-  } while(coupsRestants > 10 && gagnier(MotsMystere, MotsSecret, tailleMot) == 1);
+  while (coupsRestants > 0 & !gagne(lettreTrouver))
+  {
+    
+printf("\n \n il vous reste %d coups a jouer", coupsRestants);
+printf("\n quelle est le mot secret ? ");
 
+for (i = 0; i < 6; i++)
+{
+  if (lettreTrouver[i])
+   printf("%c", MotsSecret[i]);
+   else
+    printf("*");
+}
+
+printf("\n proposer une lettre : ");
+LettreEntre = lireCaractere();
+
+if (!rechercheLettre(LettreEntre, MotsSecret, lettreTrouver))
+{
+  coupsRestants--;
+}
+
+  }
+
+if (gagne(lettreTrouver))
+  printf("\n\nGagne ! Le mots secret etait bien : %s", MotsSecret);
+else
+    printf("\n\nPerdu ! Le mots secret etait : %s", MotsSecret);
+
+printf("\n");
 
   return 0;
 }
 
-void recherche(char LettreEntre, char *MotMystere, char *MotSecret,int coupsRestants){
-  int x = 0;
+
+int rechercheLettre(char LettreEntre, char MotsSecret[], int lettreTrouver[]){
+
   int i = 0;
+  int bonneLettre = 0;
 
-  while (MotSecret[x] != '\0')
+  for (i = 0; MotsSecret[i] != '\0' ; i++)
   {
-   x++;
-   if (MotSecret[x] == LettreEntre)
-   {
-     i++;
-     MotMystere[x] == LettreEntre;
-   }
-   
-   if (MotSecret[x] == '\0' && i == 0)
-  {
-    coupsRestants--;
-    printf("la Lettre entre ne se trouve pas dans le mots.\n retenter votre chance il vous reste %d, *coupsRestants");
-  }
-
-  }
-  
-  
-}
-
-int gagnier(char *MotsMystere, char *MotsSecret, int tailleMot)
-{
-  int x = 0;
-  int i = 0;
-
-  for (i = 0; i < tailleMot; i++)
-  {
-    if (MotsSecret[i] == MotsMystere[i])
+    if (LettreEntre == MotsSecret[i])
     {
-      x++;
-      if (x == tailleMot)
-      {
-        return 1;
-        printf("Felicitation vous avez gagnier la partie !");
-      }
-      
+      bonneLettre = 1;
+      lettreTrouver[i] = 1;
     }
-    return 0;
+    
   }
+
+ return bonneLettre;
+
 }
 
+
+
+int gagne(int lettreTrouver[]){
+  int i = 0;
+  int joueurGagne = 1;
+
+  for (i = 0; i < 6; i++)
+  {
+    if (lettreTrouver[i] == 0)
+      joueurGagne = 0;
+    
+  }
+  
+  return joueurGagne;
+}
+ 
 
 char lireCaractere()
 {

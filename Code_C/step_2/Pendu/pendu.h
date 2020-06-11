@@ -2,7 +2,7 @@
 #define DEF_MAIN_H
 
 char lireCaractere();
-int gagnier(char *MotsMystere, char *MotsSecret, int tailleMot);
-void recherche(char LettreEntre, char *MotMystere, char *MotSecret,int coupsRestants);
+int gagne(int lettreTrouver[]);
+int rechercheLettre(char LettreEntre, char MotsSecret[], int lettreTrouver[]);
 
 #endif
