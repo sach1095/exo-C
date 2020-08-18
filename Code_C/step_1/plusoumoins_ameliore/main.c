@@ -10,9 +10,9 @@ int main ( int argc, char** argv )
 
     srand(time(NULL));
 
-    // Sélection de la difficulté
+    // Sï¿½lection de la difficultï¿½
 
-    printf("Choisissez un niveau de difficulté :\n");
+    printf("Choisissez un niveau de difficultï¿½ :\n");
     printf("1 : entre 1 et 10\n2 : entre 1 et 100\n3 : entre 1 et 1000\n");
     scanf("%d", &difficulte);
 
@@ -32,7 +32,7 @@ int main ( int argc, char** argv )
         max = 100;
     }
 
-    // Début de la boucle qui permet de faire plusieurs parties
+    // Dï¿½but de la boucle qui permet de faire plusieurs parties
     do
     {
         // Initialisations pour la partie

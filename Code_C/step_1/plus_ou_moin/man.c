@@ -102,11 +102,11 @@ int main(int ac, char *av)
         {
             nombreDeTour++;
             printf("Felicitation, vous avez trouver le nombre mystere en %d tour. \n", nombreDeTour);
-            printf("Souhaitez-vous recommencer ? \n oui : tapez 1. \n non : tapez n'importe quelle chiffre.\n");
+            printf("Souhaitez-vous recommencer ? \n oui : tapez 1. \n non : tapez 0.\n");
             scanf("%d", &continuerPartie);
         }
 
     } while (nombreEntre != nombreMystere); 
- } while (continuerPartie == 1);
+ } while (continuerPartie);
  return 0;
 }
